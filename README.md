@@ -13,7 +13,12 @@ m_filter = CamlFilter(CamlOperatorType.Equal, 'Somme', 2)
 query_text = CamlWhere(m_filter).query_text
 ```
 ```xml
-<Where><Eq><FieldRef Name="Somme" /><Value Type="Integer">2</Value></Eq></Where>
+<Where>
+    <Eq>
+        <FieldRef Name="Somme" />
+        <Value Type="Integer">2</Value>
+    </Eq>
+</Where>
 ```
 
 ### Filter a date field
@@ -23,7 +28,12 @@ date_filter = CamlFilter(CamlOperatorType.Equal, 'Created', date(2021,11,17))
 query_text = CamlWhere(date_filter).query_text
 ```
 ```xml
-<Where><Eq><FieldRef Name="Created" /><Value IncludeTimeValue="FALSE" Type="DateTime">2021-11-17</Value></Eq></Where>
+<Where>
+    <Eq>
+        <FieldRef Name="Created" />
+        <Value IncludeTimeValue="FALSE" Type="DateTime">2021-11-17</Value>
+    </Eq>
+</Where>
 ```
 
 ### Filter a datetime field
@@ -33,7 +43,12 @@ date_filter = CamlFilter(CamlOperatorType.GreaterOrEqual, 'Created', datetime(20
 query_text = CamlWhere(date_filter).query_text
 ```
 ```xml
-<Where><Eq><FieldRef Name="Created" /><Value IncludeTimeValue="TRUE" Type="DateTime">2021-11-17T20:43:33</Value></Eq></Where>
+<Where>
+    <Eq>
+        <FieldRef Name="Created" />
+        <Value IncludeTimeValue="TRUE" Type="DateTime">2021-11-17T20:43:33</Value>
+    </Eq>
+</Where>
 ```
 
 ### Filter an interger field with multiple values
@@ -43,7 +58,16 @@ somme_filter = CamlFilter(CamlOperatorType.InList, 'Somme', 10, 11, 12)
 query_text = CamlWhere(somme_filter).query_text
 ```
 ```xml
-<Where><In><FieldRef Name="Somme" /><Values><Value Type="Integer">10</Value><Value Type="Integer">11</Value><Value Type="Integer">12</Value></Values></In></Where>
+<Where>
+    <In>
+        <FieldRef Name="Somme" />
+        <Values>
+            <Value Type="Integer">10</Value>
+            <Value Type="Integer">11</Value>
+            <Value Type="Integer">12</Value>
+        </Values>
+    </In>
+</Where>
 ```
 
 ### Filter a text field with order_by clause
@@ -53,7 +77,15 @@ title_filter = CamlFilter(CamlOperatorType.Contains, 'Title', 'book')
 query_text = CamlWhere(title_filter).orderBy('Created').query_text
 ```
 ```xml
-<Where><Contains><FieldRef Name="Title" /><Value Type="Text">book</Value></Contains></Where><OrderBy><FieldRef Name="Created" Ascending="True" /></OrderBy>
+<Where>
+    <Contains>
+        <FieldRef Name="Title" />
+        <Value Type="Text">book</Value>
+    </Contains>
+</Where>
+<OrderBy>
+    <FieldRef Name="Created" Ascending="True" />
+</OrderBy>
 ```
 
 ### Multiple filters with 'and' and 'or' conditions
