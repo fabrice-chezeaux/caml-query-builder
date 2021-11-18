@@ -56,7 +56,7 @@ query_text = CamlWhere(title_filter).orderBy('Created').query_text
 <Where><Contains><FieldRef Name="Title" /><Value Type="Text">book</Value></Contains></Where><OrderBy><FieldRef Name="Created" Ascending="True" /></OrderBy>
 ```
 
-### Multiple filters an interger field with 'and' and 'or' conditions
+### Multiple filters with 'and' and 'or' conditions
 
 ```python
 filter_1 = CamlFilter(CamlOperatorType.Different, 'Title', 'My book')
@@ -65,5 +65,22 @@ filter_3 = CamlFilter(CamlOperatorType.BeginsWith, 'Author', 'Georges')
 query_text = CamlWhere(CamlAnd(CamlOr(filter_1, filter_3), filter_2)).query_text
 ```
 ```xml
-<Where><And><Or><Neq><FieldRef Name="Title" /><Value Type="Text">My book</Value></Neq><BeginsWith><FieldRef Name="Author" /><Value Type="Text">Georges</Value></BeginsWith></Or><Leq><FieldRef Name="Price" /><Value Type="Integer">200</Value></Leq></And></Where>
+<Where>
+    <And>
+        <Or>
+            <Neq>
+                <FieldRef Name="Title" />
+                <Value Type="Text">My book</Value>
+            </Neq>
+            <BeginsWith>
+                <FieldRef Name="Author" />
+                <Value Type="Text">Georges</Value>
+            </BeginsWith>
+        </Or>
+        <Leq>
+            <FieldRef Name="Price" />
+            <Value Type="Integer">200</Value>
+        </Leq>
+    </And>
+</Where>
 ```
