@@ -13,6 +13,9 @@ m_filter = CamlFilter(CamlOperatorType.Equal, 'Somme', 2)
 query_text = CamlWhere(m_filter).query_text
 >>> '<Where><Eq><FieldRef Name="Somme" /><Value Type="Integer">2</Value></Eq></Where>'
 ```
+```xml
+<Where><Eq><FieldRef Name="Somme" /><Value Type="Integer">2</Value></Eq></Where>
+```
 
 ### Filter a date field
 
