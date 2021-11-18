@@ -18,7 +18,7 @@ setup(
         long_description=LONG_DESCRIPTION,
         long_description_content_type="text/markdown",
         keywords=['python', 'caml', 'sharepoint', 'rest', 'api', 'builder', 'query'],
-        url = '',
+        url = 'https://github.com/fabrice-chezeaux/caml-query-builder',
         classifiers= [
             "Development Status :: 3 - Alpha",
             "Programming Language :: Python :: 3",
