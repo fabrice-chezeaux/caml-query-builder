@@ -1,7 +1,7 @@
 # A simple Caml Query Builder - Python
 
 [CAML](https://docs.microsoft.com/en-us/sharepoint/dev/schema/query-schema) is a query language for filter SharePoint lists.
-This library expose some classes for build the '<query></query>' part of the query for the most common usages.
+This library expose some classes for build the 'query' part of the query for the most common usages.
 
 
 ## Usage exemples
@@ -94,11 +94,15 @@ query_text = CamlWhere(title_filter).orderBy('Created').query_text
 filter_1 = CamlFilter(CamlOperatorType.Different, 'Title', 'My book')
 filter_2 = CamlFilter(CamlOperatorType.LowerOrEqual, 'Price', 200)
 filter_3 = CamlFilter(CamlOperatorType.BeginsWith, 'Author', 'Georges')
-query_text = CamlWhere(CamlAnd(CamlOr(filter_1, filter_3), filter_2)).query_text
+query_text = CamlWhere(CamlAnd(filter_2, CamlOr(filter_1, filter_3))).query_text
 ```
 ```xml
 <Where>
     <And>
+        <Leq>
+            <FieldRef Name="Price" />
+            <Value Type="Integer">200</Value>
+        </Leq>
         <Or>
             <Neq>
                 <FieldRef Name="Title" />
@@ -109,10 +113,6 @@ query_text = CamlWhere(CamlAnd(CamlOr(filter_1, filter_3), filter_2)).query_text
                 <Value Type="Text">Georges</Value>
             </BeginsWith>
         </Or>
-        <Leq>
-            <FieldRef Name="Price" />
-            <Value Type="Integer">200</Value>
-        </Leq>
     </And>
 </Where>
 ```
